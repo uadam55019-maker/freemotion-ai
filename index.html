@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FreeMotion AI - Free AI Video Generator</title>
+
+<style>
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: #0b1020;
+    color: white;
+}
+
+header {
+    padding: 20px;
+    text-align: center;
+    background: #151d35;
+    border-bottom: 1px solid #303b59;
+}
+
+header h1 {
+    margin: 0;
+    color: #72f2c3;
+}
+
+header p {
+    color: #c1c9dc;
+}
+
+main {
+    max-width: 650px;
+    margin: 30px auto;
+    padding: 20px;
+}
+
+.card {
+    background: #151d35;
+    padding: 22px;
+    border-radius: 18px;
+    border: 1px solid #303b59;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+label {
+    display: block;
+    margin: 18px 0 8px;
+    font-weight: bold;
+}
+
+textarea, input, select {
+    width: 100%;
+    padding: 13px;
+    border-radius: 10px;
+    border: 1px solid #445170;
+    background: #0b1020;
+    color: white;
+    font-size: 16px;
+}
+
+textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+button {
+    width: 100%;
+    padding: 15px;
+    margin-top: 18px;
+    border: none;
+    border-radius: 10px;
+    background: #72f2c3;
+    color: #0b1020;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+button:active {
+    opacity: 0.8;
+}
+
+.note {
+    color: #c1c9dc;
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+#preview {
+    width: 100%;
+    margin-top: 20px;
+    border-radius: 12px;
+    display: none;
+}
+
+footer {
+    text-align: center;
+    padding: 25px;
+    color: #c1c9dc;
+    font-size: 13px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>✨ FreeMotion AI</h1>
+    <p>Turn your imagination into moving pictures.</p>
+</header>
+
+<main>
+    <div class="card">
+        <h2>🎬 Create an AI Video</h2>
+
+        <label for="mode">Choose creation mode</label>
+        <select id="mode" onchange="changeMode()">
+            <option value="text">Text to Video</option>
+            <option value="image">Image to Video</option>
+        </select>
+
+        <label for="prompt">Describe your video</label>
+        <textarea id="prompt"
+        placeholder="Example: A cute banana dancing with a strawberry in a colourful garden."></textarea>
+
+        <div id="imageBox" style="display:none;">
+            <label for="imageInput">Upload your picture</label>
+            <input type="file" id="imageInput" accept="image/*">
+        </div>
+
+        <label for="duration">Video duration</label>
+        <select id="duration">
+            <option value="5">5 seconds</option>
+            <option value="10">10 seconds</option>
+        </select>
+
+        <button onclick="createVideo()">Generate Video 🚀</button>
+
+        <p id="status" class="note">
+            Welcome! Describe your idea to get started.
+        </p>
+
+        <video id="preview" controls playsinline></video>
+
+        <a id="download" style="display:none;color:#72f2c3;"
+        download="freemotion-video.webm">Download video</a>
+
+        <p class="note">
+            This is the first version of the website. Actual AI video
+            generation will be connected in a later step.
+        </p>
+    </div>
+</main>
+
+<footer>
+    FreeMotion AI · Imagine it. Create it.
+</footer>
+
+<script>
+function changeMode() {
+    const mode = document.getElementById("mode").value;
+    document.getElementById("imageBox").style.display =
+        mode === "image" ? "block" : "none";
+}
+
+function createVideo() {
+    const prompt = document.getElementById("prompt").value.trim();
+    const mode = document.getElementById("mode").value;
+    const status = document.getElementById("status");
+
+    if (!prompt) {
+        status.textContent = "Please describe the video you want to create.";
+        return;
+    }
+
+    if (mode === "image") {
+        const file = document.getElementById("imageInput").files[0];
+
+        if (!file) {
+            status.textContent = "Please upload an image first.";
+            return;
+        }
+    }
+
+    status.textContent =
+        "Your website interface is working! The AI video engine has not been connected yet. Our next step is to connect it.";
+}
+</script>
+
+</body>
+  </html>
